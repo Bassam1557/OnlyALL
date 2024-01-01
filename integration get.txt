@@ -1,0 +1,23 @@
+import requests
+from fastapi import FastAPI
+import json
+
+app = FastAPI()
+
+
+@app.get('/pokeapi')
+async def poke():
+    response_API = requests.get('https://pokeapi.co/api/v2/pokemon/ditto')
+    res = response_API.json()
+    json_array= res['abilities']
+    first_element=json_array[0]['ability']['name']
+    second_element=json_array[1]['ability']['url']
+
+    return {first_element,second_element}
+
+
+
+
+
+
+
